@@ -3,20 +3,240 @@
 <head>
     <title>Trivia Game</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <!-- <link rel="stylesheet" type="text/css" href="assets/css/reset.css"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"> 
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <!-- <link rel="stylesheet" type="text/css" href="assets/css/style.css"> -->
+    <style>
 
+    #choices div {
+                margin: 20px;
+    }
+
+    </style>
     
 </head>
 <body>
+	
+	<h1>Trivia Title</h1>
+
+	<div id="timer">
+	</div>
+
+	<div id="questions">
+	</div>
+
+    <div id="choices1">
+    </div>
+
+    <div id="choices2">
+    </div>
+
+    <div id="choices3">
+    </div>
+
+    <div id="choices4">
+    </div>
+
+	<div id="playerscore">
+	</div>
+
+    <div id="start"><h4>start</h4>
+    </div>
   
  
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.js"></script>
 <!--     <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script> -->
 
-    <script type="text/javascript" src="assets/javascript/app.js"> 
+    <script type="text/javascript">
+$(document).ready(function(){
+
+
+    var timer = 30;
+
+    var correctanswer = 0;
+    var wronganswer = 0;
+    var unanswered = 0;
+
+    var trivia1 = {
+        question1: "What is questionA?",
+        choices: ["option A1", "option A2", "option A3", "option A4"],
+        correct: "option A4"
+    };
+
+    var trivia2 = {
+        question1: "What is questionB?",
+        choices: ["option B1", "option B2", "option B3", "option B4"],
+        correct: "option B2"
+    };
+
+    var trivia3 = {
+        question1: "What is questionC?",
+        choices: ["option C1", "option C2", "option C3", "option C4"],
+        correct: "option C2"
+    };
+
+    // var images = ["images/sample1.png", "images/sample2.png"]
+
+    // var showImage;
+
+
+
+         function start(){
+            quest1();
+            $("#start").hide();
+            timer = 30;
+            correctanswer = 0;
+            wronganswer = 0;
+            unanswered = 0;   
+        };
+
+        function reset(){
+            timer = 30;
+        }
+
+        $('#start').on("click", start);
+ 
+        function quest1(){
+            $('#questions').html(trivia1.question1);
+
+            var quest1adiv = $('<div>').addClass("quest1choice1");
+                $('#choices1').html(quest1adiv);
+            var quest1bdiv = $('<div>').addClass("quest1choice2");
+                $('#choices2').html(quest1bdiv);
+            var quest1cdiv = $('<div>').addClass("quest1choice3");
+                $('#choices3').html(quest1cdiv);
+            var quest1ddiv = $('<div>').addClass("quest1choice4");
+                $('#choices4').html(quest1ddiv);
+
+                $('.quest1choice1').html(trivia1.choices[0]).on("click", function(a){
+                        wronganswer++;
+                        $('#playerscore').html('Correct Answer: ' + correctanswer + 
+                                            '<br>Wrong Answer: ' + wronganswer);
+                        quest2();
+                });
+                $('.quest1choice2').html(trivia1.choices[1]).on("click", function(a){
+                        wronganswer++;
+                        $('#playerscore').html('Correct Answer: ' + correctanswer + 
+                                            '<br>Wrong Answer: ' + wronganswer);
+                        quest2();
+                });
+                $('.quest1choice3').html(trivia1.choices[2]).on("click", function(a){
+                        wronganswer++;
+                        $('#playerscore').html('Correct Answer: ' + correctanswer + 
+                                            '<br>Wrong Answer: ' + wronganswer);
+                        quest2();
+                });
+                $('.quest1choice4').html(trivia1.choices[3]).on("click", function(a){
+                        correctanswer++;
+                        $('#playerscore').html('Correct Answer: ' + correctanswer + 
+                                            '<br>Wrong Answer: ' + wronganswer);
+                        quest2();
+                });
+
+        };
+
+        // quest1();
+
+        function quest2(){
+            $('#questions').html(trivia2.question1);
+
+            var quest2adiv = $('<div>').addClass("quest2choice1");
+                $('#choices1').html(quest2adiv);
+            var quest2bdiv = $('<div>').addClass("quest2choice2");
+                $('#choices2').html(quest2bdiv);
+            var quest2cdiv = $('<div>').addClass("quest2choice3");
+                $('#choices3').html(quest2cdiv);
+            var quest2ddiv = $('<div>').addClass("quest2choice4");
+                $('#choices4').html(quest2ddiv);
+
+                $('.quest2choice1').html(trivia2.choices[0]).on("click", function(b){
+                        wronganswer++;
+                        $('#playerscore').html('Correct Answer: ' + correctanswer + 
+                                           '<br>Wrong Answer: ' + wronganswer);
+                        quest3();
+                });
+                $('.quest2choice2').html(trivia2.choices[1]).on("click", function(b){
+                        wronganswer++;
+                        $('#playerscore').html('Correct Answer: ' + correctanswer + 
+                                            '<br>Wrong Answer: ' + wronganswer);
+                        quest3();
+                });
+                $('.quest2choice3').html(trivia2.choices[2]).on("click", function(b){
+                        correctanswer++;
+                        $('#playerscore').html('Correct Answer: ' + correctanswer + 
+                                            '<br>Wrong Answer: ' + wronganswer);
+                        quest3();
+                });
+                $('.quest2choice4').html(trivia2.choices[3]).on("click", function(b){
+                        wronganswer++;
+                        $('#playerscore').html('Correct Answer: ' + correctanswer + 
+                                            '<br>Wrong Answer: ' + wronganswer);
+                        quest3();
+                });
+
+        };
+
+        // quest2();
+
+        function quest3(){
+            $('#questions').html(trivia3.question1);
+
+            var quest3adiv = $('<div>').addClass("quest3choice1");
+                $('#choices1').html(quest3adiv);
+            var quest3bdiv = $('<div>').addClass("quest3choice2");
+                $('#choices2').html(quest3bdiv);
+            var quest3cdiv = $('<div>').addClass("quest3choice3");
+                $('#choices3').html(quest3cdiv);
+            var quest3ddiv = $('<div>').addClass("quest3choice4");
+                $('#choices4').html(quest3ddiv);
+
+                $('.quest3choice1').html(trivia3.choices[0]).on("click", function(c){
+                        correctanswer++;
+                        $('#playerscore').html('Correct Answer: ' + correctanswer + 
+                                            '<br>Wrong Answer: ' + wronganswer);
+                        restart();
+                });
+                $('.quest3choice2').html(trivia3.choices[1]).on("click", function(c){
+                        wronganswer++;
+                        $('#playerscore').html('Correct Answer: ' + correctanswer + 
+                                            '<br>Wrong Answer: ' + wronganswer);
+                        restart();
+                });
+                $('.quest3choice3').html(trivia3.choices[2]).on("click", function(c){
+                        wronganswer++;
+                        $('#playerscore').html('Correct Answer: ' + correctanswer + 
+                                            '<br>Wrong Answer: ' + wronganswer);
+                        restart();
+                });
+                $('.quest3choice4').html(trivia3.choices[3]).on("click", function(c){
+                        wronganswer++;
+                        $('#playerscore').html('Correct Answer: ' + correctanswer + 
+                                            '<br>Wrong Answer: ' + wronganswer);
+                        restart();
+                });
+
+        };
+
+        function restart(){
+            $('#questions').html('<h4>All done, heres how you did</h4>');
+            $('#choices1,#choices2,#choices3,#choices4').hide();
+            $('#playerscore').html('Correct Answer: ' + correctanswer + 
+                                            '<br>Wrong Answer: ' + wronganswer);
+            $("#start").show();
+            $('#start').html('<h4>Restart</h4').on('click',function(){
+                start();
+                $("#start").hide();
+                $('#choices1,#choices2,#choices3,#choices4').show();
+            })
+
+
+        }
+
+        // quest3();  
+
+});
     </script>
+
 </body>
 </html>
