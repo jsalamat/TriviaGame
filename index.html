@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Trivia Game</title>
+    <title>BaTrivia </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="stylesheet" type="text/css" href="assets/css/reset.css"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -18,12 +18,15 @@
 </head>
 <body>
 	
-	<h1>Trivia Title</h1>
+	<h1>BATrivia</h1>
 
-	<div id="timer">
+	<div id="display">
 	</div>
 
 	<div id="questions">
+	</div>
+
+	<div id="result">
 	</div>
 
     <div id="choices1">
@@ -52,52 +55,133 @@
 $(document).ready(function(){
 
 
-    var timer = 30;
+    var time = 10;
 
     var correctanswer = 0;
     var wronganswer = 0;
     var unanswered = 0;
 
     var trivia1 = {
-        question1: "What is questionA?",
-        choices: ["option A1", "option A2", "option A3", "option A4"],
-        correct: "option A4"
+        question1: "Name the actor that didn’t play Batman:",
+        choices: ["Ben Affleck", "George Clooney", "Christian Bale", "Hugh Jackman"],
+        correct: "Hugh Jackman"
     };
 
     var trivia2 = {
-        question1: "What is questionB?",
-        choices: ["option B1", "option B2", "option B3", "option B4"],
-        correct: "option B2"
+        question1: "What was Harley Quinn’s Former Profession?",
+        choices: ["Clown", "Psychiatrist", "Jester", "Assistant"],
+        correct: "Psychiatrist"
     };
 
     var trivia3 = {
-        question1: "What is questionC?",
-        choices: ["option C1", "option C2", "option C3", "option C4"],
-        correct: "option C2"
+        question1: "Who became the Oracle?",
+        choices: ["Batwoman", "Catwoman", "Batgirl", "The Huntress"],
+        correct: "Batgirl"
     };
 
-    // var images = ["images/sample1.png", "images/sample2.png"]
+    var trivia4 = {
+        question1: "Who wasn’t a romantic interest for Batman?",
+        choices: ["Zatanna", "Catwoman", "Batgirl", "Wonder Woman"],
+        correct: "Zatanna"
+    };
 
-    // var showImage;
+
+    var images = ["assets/images/wolverine.gif", "assets/images/harley.gif", "assets/images/batgirl.gif", "assets/images/zatanna.gif"]
+
+    var showImage;
+
+    var watch;
 
 
+    
 
-         function start(){
-            quest1();
-            $("#start").hide();
-            timer = 30;
+    	 function reset(){
+            time = 10;
+		    $("#display").html('<h3>' + time + ' seconds</h3>');
+
+    	}
+
+         function starttime(){
+         	watch = setInterval(count, 1000)
+            time = 10;   
+        };
+
+        function startover(){
+         	watch = setInterval(count, 1000)
+
+            time = 10;
             correctanswer = 0;
             wronganswer = 0;
             unanswered = 0;   
         };
 
-        function reset(){
-            timer = 30;
+        $('#start').on("click", quest1);
+
+        function stop() {
+        	clearInterval(watch);
         }
 
-        $('#start').on("click", start);
+        function count(){
+        	time--;
+        	$('#display').html('<h3>' + time + ' seconds</h3>');
+        	if (time === 0) {
+        		unanswered++;
+        		reset()
+        		displayscore();
+        	}
+        }
+
+        function timeout (){
+
+        }
+
+        function displayscore(){
+        	$('#playerscore').html('Correct Answer: ' + correctanswer + 
+                        		   '<br>Wrong Answer: ' + wronganswer +
+                                   '<br>Unanswer: ' + unanswered);
+        }
+
+        function answer1timeout(){
+        	displayscore();
+        	stop();
+        	$("#display").html('<h3>' + time + ' seconds</h3>');
+        	$('#questions').html('<img src="assets/images/wolverine.gif" alt="wolverine">');
+        	$('#result').html('<h4> Times Up </h4>');
+            $('#choices1,#choices2,#choices3,#choices4').hide();
+            setTimeout(quest2, 1000 * 5);
+        }
+
+        function answer1right(){
+        	displayscore();
+        	stop();
+        	clearInterval(answer1);
+        	$("#display").html('<h3>' + time + ' seconds</h3>');
+        	$('#questions').html('<img src="assets/images/wolverine.gif" alt="wolverine">');
+        	$('#result').html('<h4> Correct </h4>');
+            $('#choices1,#choices2,#choices3,#choices4').hide();
+            setTimeout(quest2, 1000 * 5);
+        }
+        function answer1wrong(){
+        	displayscore();
+        	stop();
+        	clearInterval(answer1);
+        	$("#display").html('<h3>' + time + ' seconds</h3>');
+        	$('#questions').html('<img src="assets/images/wolverine.gif" alt="wolverine">');
+        	$('#result').html('<h4> Wrong! </h4>');
+            $('#choices1,#choices2,#choices3,#choices4').hide();
+            setTimeout(quest2, 1000 * 5);
+        }
+
+        var answer1; 
  
         function quest1(){
+
+            $("#start").hide();
+            $('#display').html('<h3>10 seconds</h3>');
+            starttime();
+
+        	 answer1 = setTimeout(answer1timeout, 1000 * 10);
+
             $('#questions').html(trivia1.question1);
 
             var quest1adiv = $('<div>').addClass("quest1choice1");
@@ -111,27 +195,19 @@ $(document).ready(function(){
 
                 $('.quest1choice1').html(trivia1.choices[0]).on("click", function(a){
                         wronganswer++;
-                        $('#playerscore').html('Correct Answer: ' + correctanswer + 
-                                            '<br>Wrong Answer: ' + wronganswer);
-                        quest2();
+                        answer1wrong();
                 });
                 $('.quest1choice2').html(trivia1.choices[1]).on("click", function(a){
                         wronganswer++;
-                        $('#playerscore').html('Correct Answer: ' + correctanswer + 
-                                            '<br>Wrong Answer: ' + wronganswer);
-                        quest2();
+                        answer1wrong();
                 });
                 $('.quest1choice3').html(trivia1.choices[2]).on("click", function(a){
                         wronganswer++;
-                        $('#playerscore').html('Correct Answer: ' + correctanswer + 
-                                            '<br>Wrong Answer: ' + wronganswer);
-                        quest2();
+                        answer1wrong();
                 });
                 $('.quest1choice4').html(trivia1.choices[3]).on("click", function(a){
                         correctanswer++;
-                        $('#playerscore').html('Correct Answer: ' + correctanswer + 
-                                            '<br>Wrong Answer: ' + wronganswer);
-                        quest2();
+                        answer1right();
                 });
 
         };
@@ -139,7 +215,14 @@ $(document).ready(function(){
         // quest1();
 
         function quest2(){
+
+        	$('#result').hide();
+        	$('#playerscore').hide();
+        	$('#display').html('<h3>10 seconds</h3>');
+        	starttime();
+
             $('#questions').html(trivia2.question1);
+            $('#choices1,#choices2,#choices3,#choices4').show();
 
             var quest2adiv = $('<div>').addClass("quest2choice1");
                 $('#choices1').html(quest2adiv);
@@ -152,26 +235,22 @@ $(document).ready(function(){
 
                 $('.quest2choice1').html(trivia2.choices[0]).on("click", function(b){
                         wronganswer++;
-                        $('#playerscore').html('Correct Answer: ' + correctanswer + 
-                                           '<br>Wrong Answer: ' + wronganswer);
+                        displayscore();
                         quest3();
                 });
                 $('.quest2choice2').html(trivia2.choices[1]).on("click", function(b){
-                        wronganswer++;
-                        $('#playerscore').html('Correct Answer: ' + correctanswer + 
-                                            '<br>Wrong Answer: ' + wronganswer);
+                        correctanswer++;
+                        displayscore();
                         quest3();
                 });
                 $('.quest2choice3').html(trivia2.choices[2]).on("click", function(b){
-                        correctanswer++;
-                        $('#playerscore').html('Correct Answer: ' + correctanswer + 
-                                            '<br>Wrong Answer: ' + wronganswer);
+                        wronganswer++;
+                        displayscore();
                         quest3();
                 });
                 $('.quest2choice4').html(trivia2.choices[3]).on("click", function(b){
                         wronganswer++;
-                        $('#playerscore').html('Correct Answer: ' + correctanswer + 
-                                            '<br>Wrong Answer: ' + wronganswer);
+                        displayscore();
                         quest3();
                 });
 
@@ -191,28 +270,61 @@ $(document).ready(function(){
             var quest3ddiv = $('<div>').addClass("quest3choice4");
                 $('#choices4').html(quest3ddiv);
 
-                $('.quest3choice1').html(trivia3.choices[0]).on("click", function(c){
+                $('.quest3choice1').html(trivia3.choices[0]).on("click", function(b){
+                        wronganswer++;
+                        displayscore();
+                        quest4();
+                });
+                $('.quest3choice2').html(trivia3.choices[1]).on("click", function(b){
+                        wronganswer++;
+                        displayscore();
+                        quest4();
+                });
+                $('.quest3choice3').html(trivia3.choices[2]).on("click", function(b){
                         correctanswer++;
-                        $('#playerscore').html('Correct Answer: ' + correctanswer + 
-                                            '<br>Wrong Answer: ' + wronganswer);
+                        displayscore();
+                        quest4();
+                });
+                $('.quest3choice4').html(trivia3.choices[3]).on("click", function(b){
+                        wronganswer++;
+                        displayscore();
+                        quest4();
+                });
+
+        };
+
+        // quest3();
+
+        function quest4(){
+            $('#questions').html(trivia4.question1);
+
+            var quest4adiv = $('<div>').addClass("quest4choice1");
+                $('#choices1').html(quest4adiv);
+            var quest4bdiv = $('<div>').addClass("quest4choice2");
+                $('#choices2').html(quest4bdiv);
+            var quest4cdiv = $('<div>').addClass("quest4choice3");
+                $('#choices3').html(quest4cdiv);
+            var quest4ddiv = $('<div>').addClass("quest4choice4");
+                $('#choices4').html(quest4ddiv);
+
+                $('.quest4choice1').html(trivia4.choices[0]).on("click", function(c){
+                        correctanswer++;
+                        displayscore();
                         restart();
                 });
-                $('.quest3choice2').html(trivia3.choices[1]).on("click", function(c){
+                $('.quest4choice2').html(trivia4.choices[1]).on("click", function(c){
                         wronganswer++;
-                        $('#playerscore').html('Correct Answer: ' + correctanswer + 
-                                            '<br>Wrong Answer: ' + wronganswer);
+                        displayscore();
                         restart();
                 });
-                $('.quest3choice3').html(trivia3.choices[2]).on("click", function(c){
+                $('.quest4choice3').html(trivia4.choices[2]).on("click", function(c){
                         wronganswer++;
-                        $('#playerscore').html('Correct Answer: ' + correctanswer + 
-                                            '<br>Wrong Answer: ' + wronganswer);
+                        displayscore();
                         restart();
                 });
-                $('.quest3choice4').html(trivia3.choices[3]).on("click", function(c){
+                $('.quest4choice4').html(trivia4.choices[3]).on("click", function(c){
                         wronganswer++;
-                        $('#playerscore').html('Correct Answer: ' + correctanswer + 
-                                            '<br>Wrong Answer: ' + wronganswer);
+                        displayscore();
                         restart();
                 });
 
@@ -221,11 +333,10 @@ $(document).ready(function(){
         function restart(){
             $('#questions').html('<h4>All done, heres how you did</h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
-            $('#playerscore').html('Correct Answer: ' + correctanswer + 
-                                            '<br>Wrong Answer: ' + wronganswer);
+            displayscore();
             $("#start").show();
             $('#start').html('<h4>Restart</h4').on('click',function(){
-                start();
+                startover();
                 $("#start").hide();
                 $('#choices1,#choices2,#choices3,#choices4').show();
             })
