@@ -22,7 +22,7 @@
 // it will give correct answer show for 4 sec and mov on to next question
 // timer goes down when hit zero show out of time and correct answer
 // at the end total of correct, wrong, and unanswered with start over button that reset the game
-
+//need to
 
 $(document).ready(function(){
     $('#choices1,#choices2,#choices3,#choices4').hide();
