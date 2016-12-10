@@ -200,6 +200,8 @@ $(document).ready(function(){
         var answer1; 
  
         function quest1(){
+            $('#questions').show();
+            $('#result').hide();
 
             $('#display').show();
             $("#start").hide();
