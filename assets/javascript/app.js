@@ -25,8 +25,8 @@
 
 
 $(document).ready(function(){
-
-
+    $('#choices1,#choices2,#choices3,#choices4').hide();
+    $('#playerscore').hide();
     var time = 10;
 
     var correctanswer = 0;
@@ -116,7 +116,7 @@ $(document).ready(function(){
 
     	 function reset(){
             time = 10;
-		    $("#display").html('<h3>' + time + ' seconds</h3>');
+		    $("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
 
     	}
 
@@ -141,7 +141,7 @@ $(document).ready(function(){
 
         function count(){
         	time--;
-        	$('#display').html('<h3>' + time + ' seconds</h3>');
+        	$('#display').html('<h3>Time Remaining: ' + time + ' seconds</h3>');
         	if (time === 0) {
         		stop();
         		reset();
@@ -165,7 +165,7 @@ $(document).ready(function(){
         	$('#result').show();
         	displayscore();
         	stop();
-        	$("#display").html('<h3>0 seconds</h3>');
+        	$("#display").html('<h3>Time Remaining: 0 seconds</h3>');
         	$('#questions').html('<img src="assets/images/wolverine.gif" alt="wolverine">');
         	$('#result').html('<h4> Time&#39;s Up </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -178,7 +178,7 @@ $(document).ready(function(){
         	displayscore();
         	stop();
         	clearInterval(answer1);
-        	$("#display").html('<h3>' + time + ' seconds</h3>');
+        	$("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
         	$('#questions').html('<img src="assets/images/wolverine.gif" alt="wolverine">');
         	$('#result').html('<h4> Correct </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -190,7 +190,7 @@ $(document).ready(function(){
         	displayscore();
         	stop();
         	clearInterval(answer1);
-        	$("#display").html('<h3>' + time + ' seconds</h3>');
+        	$("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
         	$('#questions').html('<img src="assets/images/wolverine.gif" alt="wolverine">');
         	$('#result').html('<h4> Wrong! </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -204,13 +204,13 @@ $(document).ready(function(){
             $('#display').show();
             $("#start").hide();
             $('#playerscore').hide();
-            $('#display').html('<h3>10 seconds</h3>');
+            $('#display').html('<h3>Time Remaining: 10 seconds</h3>');
             starttime();
 
         	 answer1 = setTimeout(answer1timeout, 1000 * 10);
 
             $('#questions').html(trivia1.question1);
-
+            $('#choices1,#choices2,#choices3,#choices4').show();
             var quest1adiv = $('<div>').addClass("quest1choice1");
                 $('#choices1').html(quest1adiv);
             var quest1bdiv = $('<div>').addClass("quest1choice2");
@@ -245,7 +245,7 @@ $(document).ready(function(){
         	$('#result').show();
         	displayscore();
         	stop();
-        	$("#display").html('<h3>0 seconds</h3>');
+        	$("#display").html('<h3>Time Remaining: 0 seconds</h3>');
         	$('#questions').html('<img src="assets/images/harley.gif" alt="Harley Quinn">');
         	$('#result').html('<h4> Time&#39;s Up </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -258,7 +258,7 @@ $(document).ready(function(){
         	displayscore();
         	stop();
         	clearInterval(answer2);
-        	$("#display").html('<h3>' + time + ' seconds</h3>');
+        	$("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
         	$('#questions').html('<img src="assets/images/harley.gif" alt="Harley Quinn">');
         	$('#result').html('<h4> Correct </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -270,7 +270,7 @@ $(document).ready(function(){
         	displayscore();
         	stop();
         	clearInterval(answer2);
-        	$("#display").html('<h3>' + time + ' seconds</h3>');
+        	$("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
         	$('#questions').html('<img src="assets/images/harley.gif" alt="Harley Quinn">');
         	$('#result').html('<h4> Wrong! </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -283,7 +283,7 @@ $(document).ready(function(){
 
         	$('#result').hide();
         	$('#playerscore').hide();
-        	$('#display').html('<h3>10 seconds</h3>');
+        	$('#display').html('<h3>Time Remaining: 10 seconds</h3>');
         	starttime();
 
         	answer2 = setTimeout(answer2timeout, 1000 * 10);
@@ -325,7 +325,7 @@ $(document).ready(function(){
         	$('#result').show();
         	displayscore();
         	stop();
-        	$("#display").html('<h3>0 seconds</h3>');
+        	$("#display").html('<h3>Time Remaining: 0 seconds</h3>');
         	$('#questions').html('<img src="assets/images/batgirl.gif" alt="Batgirl">');
         	$('#result').html('<h4> Time&#39;s Up </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -338,7 +338,7 @@ $(document).ready(function(){
         	displayscore();
         	stop();
         	clearInterval(answer3);
-        	$("#display").html('<h3>' + time + ' seconds</h3>');
+        	$("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
         	$('#questions').html('<img src="assets/images/batgirl.gif" alt="Batgirl">');
         	$('#result').html('<h4> Correct </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -350,7 +350,7 @@ $(document).ready(function(){
         	displayscore();
         	stop();
         	clearInterval(answer3);
-        	$("#display").html('<h3>' + time + ' seconds</h3>');
+        	$("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
         	$('#questions').html('<img src="assets/images/batgirl.gif" alt="Batgirl">');
         	$('#result').html('<h4> Wrong! </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -363,7 +363,7 @@ $(document).ready(function(){
 
         	$('#result').hide();
         	$('#playerscore').hide();
-        	$('#display').html('<h3>10 seconds</h3>');
+        	$('#display').html('<h3>Time Remaining: 10 seconds</h3>');
         	starttime();
 
         	answer3 = setTimeout(answer3timeout, 1000 * 10);
@@ -405,7 +405,7 @@ $(document).ready(function(){
             $('#result').show();
             displayscore();
             stop();
-            $("#display").html('<h3>0 seconds</h3>');
+            $("#display").html('<h3>Time Remaining: 0 seconds</h3>');
             $('#questions').html('<img src="assets/images/zatanna.gif" alt="Zatanna">');
             $('#result').html('<h4> Time&#39;s Up </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -418,7 +418,7 @@ $(document).ready(function(){
             displayscore();
             stop();
             clearInterval(answer4);
-            $("#display").html('<h3>' + time + ' seconds</h3>');
+            $("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
             $('#questions').html('<img src="assets/images/zatanna.gif" alt="Zatanna">');
             $('#result').html('<h4> Correct </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -430,7 +430,7 @@ $(document).ready(function(){
             displayscore();
             stop();
             clearInterval(answer4);
-            $("#display").html('<h3>' + time + ' seconds</h3>');
+            $("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
             $('#questions').html('<img src="assets/images/zatanna.gif" alt="Zatanna">');
             $('#result').html('<h4> Wrong! </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -443,7 +443,7 @@ $(document).ready(function(){
 
             $('#result').hide();
             $('#playerscore').hide();
-            $('#display').html('<h3>10 seconds</h3>');
+            $('#display').html('<h3>Time Remaining: 10 seconds</h3>');
             starttime();
 
             answer4 = setTimeout(answer4timeout, 1000 * 10);
@@ -485,7 +485,7 @@ $(document).ready(function(){
             $('#result').show();
             displayscore();
             stop();
-            $("#display").html('<h3>0 seconds</h3>');
+            $("#display").html('<h3>Time Remaining: 0 seconds</h3>');
             $('#questions').html('<img src="assets/images/legobatman.gif" alt="Lego Batman">');
             $('#result').html('<h4> Time&#39;s Up </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -498,7 +498,7 @@ $(document).ready(function(){
             displayscore();
             stop();
             clearInterval(answer5);
-            $("#display").html('<h3>' + time + ' seconds</h3>');
+            $("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
             $('#questions').html('<img src="assets/images/legobatman.gif" alt="Lego Batman">');
             $('#result').html('<h4> Correct </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -510,7 +510,7 @@ $(document).ready(function(){
             displayscore();
             stop();
             clearInterval(answer5);
-            $("#display").html('<h3>' + time + ' seconds</h3>');
+            $("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
             $('#questions').html('<img src="assets/images/legobatman.gif" alt="Lego Batman">');
             $('#result').html('<h4> Wrong! </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -523,7 +523,7 @@ $(document).ready(function(){
 
             $('#result').hide();
             $('#playerscore').hide();
-            $('#display').html('<h3>10 seconds</h3>');
+            $('#display').html('<h3>Time Remaining: 10 seconds</h3>');
             starttime();
 
             answer5 = setTimeout(answer5timeout, 1000 * 10);
@@ -565,7 +565,7 @@ $(document).ready(function(){
             $('#result').show();
             displayscore();
             stop();
-            $("#display").html('<h3>0 seconds</h3>');
+            $("#display").html('<h3>Time Remaining: 0 seconds</h3>');
             $('#questions').html('<img src="assets/images/batmansmells.gif" alt="Joker Laughing">');
             $('#result').html('<h4> Time&#39;s Up </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -578,7 +578,7 @@ $(document).ready(function(){
             displayscore();
             stop();
             clearInterval(answer6);
-            $("#display").html('<h3>' + time + ' seconds</h3>');
+            $("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
             $('#questions').html('<img src="assets/images/batmansmells.gif" alt="Joker Laughing">');
             $('#result').html('<h4> Correct </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -590,7 +590,7 @@ $(document).ready(function(){
             displayscore();
             stop();
             clearInterval(answer6);
-            $("#display").html('<h3>' + time + ' seconds</h3>');
+            $("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
             $('#questions').html('<img src="assets/images/batmansmells.gif" alt="Joker Laughing">');
             $('#result').html('<h4> Wrong! </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -603,7 +603,7 @@ $(document).ready(function(){
 
             $('#result').hide();
             $('#playerscore').hide();
-            $('#display').html('<h3>10 seconds</h3>');
+            $('#display').html('<h3>Time Remaining: 10 seconds</h3>');
             starttime();
 
             answer6 = setTimeout(answer6timeout, 1000 * 10);
@@ -645,7 +645,7 @@ $(document).ready(function(){
             $('#result').show();
             displayscore();
             stop();
-            $("#display").html('<h3>0 seconds</h3>');
+            $("#display").html('<h3>Time Remaining: 0 seconds</h3>');
             $('#questions').html('<img src="assets/images/bane.gif" alt="Bane">');
             $('#result').html('<h4> Time&#39;s Up </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -658,7 +658,7 @@ $(document).ready(function(){
             displayscore();
             stop();
             clearInterval(answer7);
-            $("#display").html('<h3>' + time + ' seconds</h3>');
+            $("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
             $('#questions').html('<img src="assets/images/bane.gif" alt="Bane">');
             $('#result').html('<h4> Correct </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -670,7 +670,7 @@ $(document).ready(function(){
             displayscore();
             stop();
             clearInterval(answer7);
-            $("#display").html('<h3>' + time + ' seconds</h3>');
+            $("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
             $('#questions').html('<img src="assets/images/bane.gif" alt="Bane">');
             $('#result').html('<h4> Wrong! </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -683,7 +683,7 @@ $(document).ready(function(){
 
             $('#result').hide();
             $('#playerscore').hide();
-            $('#display').html('<h3>10 seconds</h3>');
+            $('#display').html('<h3>Time Remaining: 10 seconds</h3>');
             starttime();
 
             answer7 = setTimeout(answer7timeout, 1000 * 10);
@@ -725,7 +725,7 @@ $(document).ready(function(){
             $('#result').show();
             displayscore();
             stop();
-            $("#display").html('<h3>0 seconds</h3>');
+            $("#display").html('<h3>Time Remaining: 0 seconds</h3>');
             $('#questions').html('<img src="assets/images/nightwing.gif" alt="Nightwing">');
             $('#result').html('<h4> Time&#39;s Up </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -738,7 +738,7 @@ $(document).ready(function(){
             displayscore();
             stop();
             clearInterval(answer8);
-            $("#display").html('<h3>' + time + ' seconds</h3>');
+            $("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
             $('#questions').html('<img src="assets/images/nightwing.gif" alt="Nightwing">');
             $('#result').html('<h4> Correct </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -750,7 +750,7 @@ $(document).ready(function(){
             displayscore();
             stop();
             clearInterval(answer8);
-            $("#display").html('<h3>' + time + ' seconds</h3>');
+            $("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
             $('#questions').html('<img src="assets/images/nightwing.gif" alt="Nightwing">');
             $('#result').html('<h4> Wrong! </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -763,7 +763,7 @@ $(document).ready(function(){
 
             $('#result').hide();
             $('#playerscore').hide();
-            $('#display').html('<h3>10 seconds</h3>');
+            $('#display').html('<h3>Time Remaining: 10 seconds</h3>');
             starttime();
 
             answer8 = setTimeout(answer8timeout, 1000 * 10);
@@ -805,7 +805,7 @@ $(document).ready(function(){
             $('#result').show();
             displayscore();
             stop();
-            $("#display").html('<h3>0 seconds</h3>');
+            $("#display").html('<h3>Time Remaining: 0 seconds</h3>');
             $('#questions').html('<img src="assets/images/batusi.gif" alt="Batusi">');
             $('#result').html('<h4> Time&#39;s Up </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -818,7 +818,7 @@ $(document).ready(function(){
             displayscore();
             stop();
             clearInterval(answer9);
-            $("#display").html('<h3>' + time + ' seconds</h3>');
+            $("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
             $('#questions').html('<img src="assets/images/batusi.gif" alt="Batusi">');
             $('#result').html('<h4> Correct </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -830,7 +830,7 @@ $(document).ready(function(){
             displayscore();
             stop();
             clearInterval(answer9);
-            $("#display").html('<h3>' + time + ' seconds</h3>');
+            $("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
             $('#questions').html('<img src="assets/images/batusi.gif" alt="Batusi">');
             $('#result').html('<h4> Wrong! </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -843,7 +843,7 @@ $(document).ready(function(){
 
             $('#result').hide();
             $('#playerscore').hide();
-            $('#display').html('<h3>10 seconds</h3>');
+            $('#display').html('<h3>Time Remaining: 10 seconds</h3>');
             starttime();
 
             answer9 = setTimeout(answer9timeout, 1000 * 10);
@@ -885,7 +885,7 @@ $(document).ready(function(){
             $('#result').show();
             displayscore();
             stop();
-            $("#display").html('<h3>0 seconds</h3>');
+            $("#display").html('<h3>Time Remaining: 0 seconds</h3>');
             $('#questions').html('<img src="assets/images/martha.gif" alt="Sad Affleck">');
             $('#result').html('<h4> Time&#39;s Up </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -898,7 +898,7 @@ $(document).ready(function(){
             displayscore();
             stop();
             clearInterval(answer10);
-            $("#display").html('<h3>' + time + ' seconds</h3>');
+            $("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
             $('#questions').html('<img src="assets/images/martha.gif" alt="Sad Affleck">');
             $('#result').html('<h4> Correct </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -910,7 +910,7 @@ $(document).ready(function(){
             displayscore();
             stop();
             clearInterval(answer10);
-            $("#display").html('<h3>' + time + ' seconds</h3>');
+            $("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
             $('#questions').html('<img src="assets/images/martha.gif" alt="Sad Affleck">');
             $('#result').html('<h4> Wrong! </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -923,7 +923,7 @@ $(document).ready(function(){
 
             $('#result').hide();
             $('#playerscore').hide();
-            $('#display').html('<h3>10 seconds</h3>');
+            $('#display').html('<h3>Time Remaining: 10 seconds</h3>');
             starttime();
 
             answer10 = setTimeout(answer10timeout, 1000 * 10);
@@ -965,7 +965,7 @@ $(document).ready(function(){
             $('#result').show();
             displayscore();
             stop();
-            $("#display").html('<h3>0 seconds</h3>');
+            $("#display").html('<h3>Time Remaining: 0 seconds</h3>');
             $('#questions').html('<img src="assets/images/mrfreeze.gif" alt="Mr Freeze">');
             $('#result').html('<h4> Time&#39;s Up </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -978,7 +978,7 @@ $(document).ready(function(){
             displayscore();
             stop();
             clearInterval(answer11);
-            $("#display").html('<h3>' + time + ' seconds</h3>');
+            $("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
             $('#questions').html('<img src="assets/images/mrfreeze.gif" alt="Mr Freeze">');
             $('#result').html('<h4> Correct </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -990,7 +990,7 @@ $(document).ready(function(){
             displayscore();
             stop();
             clearInterval(answer11);
-            $("#display").html('<h3>' + time + ' seconds</h3>');
+            $("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
             $('#questions').html('<img src="assets/images/mrfreeze.gif" alt="Mr Freeze">');
             $('#result').html('<h4> Wrong! </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -1003,7 +1003,7 @@ $(document).ready(function(){
 
             $('#result').hide();
             $('#playerscore').hide();
-            $('#display').html('<h3>10 seconds</h3>');
+            $('#display').html('<h3>Time Remaining: 10 seconds</h3>');
             starttime();
 
             answer11 = setTimeout(answer11timeout, 1000 * 10);
@@ -1045,7 +1045,7 @@ $(document).ready(function(){
         	$('#result').show();
         	displayscore();
         	stop();
-        	$("#display").html('<h3>0 seconds</h3>');
+        	$("#display").html('<h3>Time Remaining: 0 seconds</h3>');
         	$('#questions').html('<img src="assets/images/joker.gif" alt="Joker">');
         	$('#result').html('<h4> Time&#39;s Up </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -1058,7 +1058,7 @@ $(document).ready(function(){
         	displayscore();
         	stop();
         	clearInterval(answer12);
-        	$("#display").html('<h3>' + time + ' seconds</h3>');
+        	$("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
         	$('#questions').html('<img src="assets/images/joker.gif" alt="Joker">');
         	$('#result').html('<h4> Correct </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -1070,7 +1070,7 @@ $(document).ready(function(){
         	displayscore();
         	stop();
         	clearInterval(answer12);
-        	$("#display").html('<h3>' + time + ' seconds</h3>');
+        	$("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
         	$('#questions').html('<img src="assets/images/joker.gif" alt="Joker">');
         	$('#result').html('<h4> Wrong! </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
@@ -1085,7 +1085,7 @@ $(document).ready(function(){
 
         	$('#result').hide();
         	$('#playerscore').hide();
-        	$('#display').html('<h3>10 seconds</h3>');
+        	$('#display').html('<h3>Time Remaining: 10 seconds</h3>');
         	starttime();
 
         	answer12 = setTimeout(answer12timeout, 1000 * 10);
@@ -1124,8 +1124,8 @@ $(document).ready(function(){
         function restart(){
         	this.stop();
         	$('#display').hide();
-        	$('#result').hide();
-            $('#questions').html('<h4>All done, heres how you did</h4>');
+        	$('#questions').hide();
+            $('#result').html('<h4>All done, here&#39;s how you did</h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             displayscore();
             $("#start").show();

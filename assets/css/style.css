@@ -1,5 +1,147 @@
-#choices div {
-	margin: 20px;
-	
+html, body {
+	background: url(../images/jimlemontage2.jpg) no-repeat;
+    background-size: cover;
+}
 
+img {
+	height: 360px;
+}
+
+.header {
+	text-align: center;
+	background-color: rgba(34, 34, 34, 1);
+	height: 220px;
+/*	padding: 10px 0 0 0;
+	margin: 0;*/
+}
+
+
+.batrivialogo {
+	height: 215px;
+	margin: 0;
+	padding: 0;
+}
+
+.jumbotron {
+    background: url(../images/gothambg.jpg) no-repeat center center;
+    background-size: cover;
+    /*background-position: 0px -120px;*/
+    height: 800px;
+    text-align: left;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-top:30px;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.container {
+	max-width: 1200px;
+	margin: 0 auto 0 auto;
+}
+
+#blackbox {
+	background-color: rgba(34, 34, 34, 0.4);
+	width: 100%;
+	max-height: 635px;
+	padding-left: 40px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin-top: 60px;
+	border-top: 2px solid yellow;
+	border-bottom: 2px solid yellow;
+}
+
+#display h3 {
+	color: lightblue;
+	letter-spacing: 1px;
+	font-size: 24px;
+}
+
+#start {
+	color: #000000;
+	border: 1px solid lightyellow;
+	text-align: center;
+	padding: 15px 15px 15px 15px;
+	margin: 20px 0 20px 130px;
+	border-radius: 25px;
+	background-color: yellow;
+	width: 220px;
+	height: 60px;
+	box-shadow: -2px 5px 5px #000000;
+	cursor: pointer;
+    -webkit-transition-duration: 1s; /* Safari */
+    transition-duration: 1s;
+}
+
+#start h4 {
+	font-size: 34px;
+	line-height: 0.5;
+}
+
+#start:hover {
+	color: #ffffff;
+	border: 1px solid lightblue;
+	background-color: rgba(183, 215, 232, 0.4);
+}
+
+div #questions {
+	color: #ffffff;
+	letter-spacing: 1.25px;
+	font-size: 28px;
+}
+
+#choices1, #choices2, #choices3, #choices4  {
+	color: #000000;
+	background-color: rgba(183, 215, 232, 0.4);
+	border: 2px solid lightblue;
+	font-size: 20px;
+	letter-spacing: 1px; 
+	margin: 15px;
+	padding: 10px 20px 10px;
+	max-width: 330px;
+	border-radius: 25px;
+	cursor: pointer;
+    -webkit-transition-duration: 1s; /* Safari */
+    transition-duration: 1s;
+}
+
+#choices1:hover, #choices2:hover, #choices3:hover, #choices4:hover  {
+	background-color: rgb(241, 238, 97);
+    border: 2px solid #000000;
+}
+
+#result h4{
+	color: #ffffff;
+	letter-spacing: 1.25px;
+	font-size: 30px;
+	font-weight: bold;
+	letter-spacing: 2px
+	padding: 20px;
+	margin: 15px;
+}
+
+#playerscore  {
+	color: #000000;
+	background-color: rgba(241, 238, 97, 0.4);
+	border: 2px solid yellow;
+	font-size: 20px;
+	letter-spacing: 1px; 
+	margin: 15px;
+	padding: 10px 20px 10px;
+	max-width: 330px;
+	border-radius: 25px;
+}
+
+.footer { 
+  background-color: rgba(0, 0, 0, 0.9);
+  height: 80px;
+}
+
+.footer p {
+  color: #ffffff;
+  font-size: 14px;
+  height: 80px;
+  line-height: 80px;
+  margin: 0;
 }
