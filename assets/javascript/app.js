@@ -1,38 +1,15 @@
-// Create a Trivia game using JavaScript for the logic and jQuery to manipulate HTML.
-
-// You'll create a trivia game that shows only one question until the player answers it or their time runs out.
-
-// If the player selects the correct answer, show a screen congratulating them for choosing the right option.
-// After a few seconds, display the next question -- do this without user input.
-
-// The scenario is similar for wrong answers and time-outs.
-
-// If the player runs out of time, tell the player that time's up and display the correct answer.
-// Wait a few seconds, then show the next question.
-
-// If the player chooses the wrong answer, tell the player they selected the wrong option
-// and then display the correct answer. Wait a few seconds, then show the next question.
-
-// On the final screen, show the number of correct answers, incorrect answers,
-// and an option to restart the game (without reloading the page).
-
-
-// one question at a time and with 30 sec timer
-//when click on answer it tell wether correct or not
-// it will give correct answer show for 4 sec and mov on to next question
-// timer goes down when hit zero show out of time and correct answer
-// at the end total of correct, wrong, and unanswered with start over button that reset the game
-//need to
-
+// start at document with choices and playerscore are hidden
 $(document).ready(function(){
     $('#choices1,#choices2,#choices3,#choices4').hide();
     $('#playerscore').hide();
-    var time = 10;
 
+// variable to hold player score and time
+    var time = 10;
     var correctanswer = 0;
     var wronganswer = 0;
     var unanswered = 0;
 
+// variable trivia holding questions, choices and correct answer as object
     var trivia1 = {
         question1: "Name the actor that didn&#39;t play Batman:",
         choices: ["Ben Affleck", "George Clooney", "Christian Bale", "Hugh Jackman"],
@@ -105,40 +82,33 @@ $(document).ready(function(){
         correct: "Purple"
     };
 
-
-
-    var images = ["../images/wolverine.gif", "../images/harley.gif", "../images/batgirl.gif", "../images/zatanna.gif"]
-
-    var showImage;
-
+// variable watch need to global scope to interact with function relating to count function 
     var watch;
 
-
+// reset function bring back 10 seconds in time variable
     	 function reset(){
             time = 10;
 		    $("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
-
     	}
-
+// starttime function have time = 10 and variable watch related to count function activate in 1 seconds
          function starttime(){
          	watch = setInterval(count, 1000)
             time = 10;   
         };
-
+// the startover function is for reset score and time after game is over
         function startover(){
-         	// watch = setInterval(count, 1000)
             time = 10;
             correctanswer = 0;
             wronganswer = 0;
             unanswered = 0;   
         };
-
+// this start the game on click at start id as button to question 1
         $('#start').on("click", quest1);
-
+// stop function stop and clear watch 
         function stop() {
         	clearInterval(watch);
         }
-
+// count function goes to down by 1 and if equal 0 it activate the stop and reset function 
         function count(){
         	time--;
         	$('#display').html('<h3>Time Remaining: ' + time + ' seconds</h3>');
@@ -148,17 +118,15 @@ $(document).ready(function(){
         		displayscore();
         	}
         }
-
-        function timeout (){
-
-        }
-
+// display score shows correct, wrong, and unanswer choices
         function displayscore(){
         	$('#playerscore').html('Correct Answer: ' + correctanswer + 
                         		   '<br>Wrong Answer: ' + wronganswer +
                                    '<br>Unanswer: ' + unanswered);
         }
-
+// timeout function is when unswered and related to variable answer which activate when timeout in 10 seconds
+// unaswered goes up, we show playerscore and result, stop watch, img with gif related to subject and question
+// set timeout is for 5 seond until next question
         function answer1timeout(){
         	unanswered++;
         	$('#playerscore').show();
@@ -167,11 +135,12 @@ $(document).ready(function(){
         	stop();
         	$("#display").html('<h3>Time Remaining: 0 seconds</h3>');
         	$('#questions').html('<img src="assets/images/wolverine.gif" alt="wolverine">');
-        	$('#result').html('<h4> Time&#39;s Up </h4>');
+        	$('#result').html('<h4> Time&#39;s Up: Make up your mind civilian.</h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(quest2, 1000 * 5);
         }
-
+// answerright and anwerswrong setup is simalar to timeout function except this clearInterval the answertimeout
+// In addition this set up allow for answerright and anwerswrong different img src and responds on id result for each question 
         function answer1right(){
         	$('#playerscore').show();
         	$('#result').show();
@@ -180,7 +149,7 @@ $(document).ready(function(){
         	clearInterval(answer1);
         	$("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
         	$('#questions').html('<img src="assets/images/wolverine.gif" alt="wolverine">');
-        	$('#result').html('<h4> Correct </h4>');
+        	$('#result').html('<h4>Correct: He&#39;s alright. He needs to layoff those musicals.</h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(quest2, 1000 * 5);
         }
@@ -192,11 +161,11 @@ $(document).ready(function(){
         	clearInterval(answer1);
         	$("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
         	$('#questions').html('<img src="assets/images/wolverine.gif" alt="wolverine">');
-        	$('#result').html('<h4> Wrong! </h4>');
+        	$('#result').html('<h4>Wrong: What? You do not watch any of my movies</h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(quest2, 1000 * 5);
         }
-
+//var answer need to global in order to settimeout to interact with answertimeout
         var answer1; 
  
         function quest1(){
@@ -249,7 +218,7 @@ $(document).ready(function(){
         	stop();
         	$("#display").html('<h3>Time Remaining: 0 seconds</h3>');
         	$('#questions').html('<img src="assets/images/harley.gif" alt="Harley Quinn">');
-        	$('#result').html('<h4> Time&#39;s Up </h4>');
+        	$('#result').html('<h4> Time&#39;s Up: Hey nerds! Stop Daydreaming! She&#39;s not going to be your girlfriend. </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(quest3, 1000 * 5);
         }
@@ -262,7 +231,7 @@ $(document).ready(function(){
         	clearInterval(answer2);
         	$("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
         	$('#questions').html('<img src="assets/images/harley.gif" alt="Harley Quinn">');
-        	$('#result').html('<h4> Correct </h4>');
+        	$('#result').html('<h4> Correct: I only care about her next profession. Being an inmate at Arkham. Bat&#39;s got some jokes! </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(quest3, 1000 * 5);
         }
@@ -274,7 +243,7 @@ $(document).ready(function(){
         	clearInterval(answer2);
         	$("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
         	$('#questions').html('<img src="assets/images/harley.gif" alt="Harley Quinn">');
-        	$('#result').html('<h4> Wrong! </h4>');
+        	$('#result').html('<h4> Wrong: You are as annoying as her laugh.</h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(quest3, 1000 * 5);
         }
@@ -329,7 +298,7 @@ $(document).ready(function(){
         	stop();
         	$("#display").html('<h3>Time Remaining: 0 seconds</h3>');
         	$('#questions').html('<img src="assets/images/batgirl.gif" alt="Batgirl">');
-        	$('#result').html('<h4> Time&#39;s Up </h4>');
+        	$('#result').html('<h4> Time&#39;s Up: You know guessing is allowed, right? </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(quest4, 1000 * 5);
         }
@@ -342,7 +311,7 @@ $(document).ready(function(){
         	clearInterval(answer3);
         	$("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
         	$('#questions').html('<img src="assets/images/batgirl.gif" alt="Batgirl">');
-        	$('#result').html('<h4> Correct </h4>');
+        	$('#result').html('<h4> Correct: Jim would be proud! </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(quest4, 1000 * 5);
         }
@@ -354,7 +323,7 @@ $(document).ready(function(){
         	clearInterval(answer3);
         	$("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
         	$('#questions').html('<img src="assets/images/batgirl.gif" alt="Batgirl">');
-        	$('#result').html('<h4> Wrong! </h4>');
+        	$('#result').html('<h4> Wrong: That&#39;s a tough one! </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(quest4, 1000 * 5);
         }
@@ -409,7 +378,7 @@ $(document).ready(function(){
             stop();
             $("#display").html('<h3>Time Remaining: 0 seconds</h3>');
             $('#questions').html('<img src="assets/images/zatanna.gif" alt="Zatanna">');
-            $('#result').html('<h4> Time&#39;s Up </h4>');
+            $('#result').html('<h4> Time&#39;s Up: Too many girls! Too little time!</h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(quest5, 1000 * 5);
         }
@@ -422,7 +391,7 @@ $(document).ready(function(){
             clearInterval(answer4);
             $("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
             $('#questions').html('<img src="assets/images/zatanna.gif" alt="Zatanna">');
-            $('#result').html('<h4> Correct </h4>');
+            $('#result').html('<h4> Correct: I never wanted to date a magician. They always disappeared when you needed them. </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(quest5, 1000 * 5);
         }
@@ -434,7 +403,7 @@ $(document).ready(function(){
             clearInterval(answer4);
             $("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
             $('#questions').html('<img src="assets/images/zatanna.gif" alt="Zatanna">');
-            $('#result').html('<h4> Wrong! </h4>');
+            $('#result').html('<h4> Wrong: Can&#39;t blame you! I can&#39t keep track of them myself. </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(quest5, 1000 * 5);
         }
@@ -489,7 +458,7 @@ $(document).ready(function(){
             stop();
             $("#display").html('<h3>Time Remaining: 0 seconds</h3>');
             $('#questions').html('<img src="assets/images/legobatman.gif" alt="Lego Batman">');
-            $('#result').html('<h4> Time&#39;s Up </h4>');
+            $('#result').html('<h4> Time&#39;s Up: Argghhhhh....There are other movies besides the Hunger Games. </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(quest6, 1000 * 5);
         }
@@ -502,7 +471,7 @@ $(document).ready(function(){
             clearInterval(answer5);
             $("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
             $('#questions').html('<img src="assets/images/legobatman.gif" alt="Lego Batman">');
-            $('#result').html('<h4> Correct </h4>');
+            $('#result').html('<h4> Correct: My agent Alfred made me do it! </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(quest6, 1000 * 5);
         }
@@ -514,7 +483,7 @@ $(document).ready(function(){
             clearInterval(answer5);
             $("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
             $('#questions').html('<img src="assets/images/legobatman.gif" alt="Lego Batman">');
-            $('#result').html('<h4> Wrong! </h4>');
+            $('#result').html('<h4> Wrong: You guys love Marvel too much! I need to change that! </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(quest6, 1000 * 5);
         }
@@ -569,7 +538,7 @@ $(document).ready(function(){
             stop();
             $("#display").html('<h3>Time Remaining: 0 seconds</h3>');
             $('#questions').html('<img src="assets/images/batmansmells.gif" alt="Joker Laughing">');
-            $('#result').html('<h4> Time&#39;s Up </h4>');
+            $('#result').html('<h4> Time&#39;s Up: Nothing? Did you guys even have a childhood? </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(quest7, 1000 * 5);
         }
@@ -582,7 +551,7 @@ $(document).ready(function(){
             clearInterval(answer6);
             $("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
             $('#questions').html('<img src="assets/images/batmansmells.gif" alt="Joker Laughing">');
-            $('#result').html('<h4> Correct </h4>');
+            $('#result').html('<h4> Correct: Hey! I Don&#39;t smell! </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(quest7, 1000 * 5);
         }
@@ -594,7 +563,7 @@ $(document).ready(function(){
             clearInterval(answer6);
             $("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
             $('#questions').html('<img src="assets/images/batmansmells.gif" alt="Joker Laughing">');
-            $('#result').html('<h4> Wrong! </h4>');
+            $('#result').html('<h4> Wrong: Where&#39;s the Christmas Spirit? </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(quest7, 1000 * 5);
         }
@@ -649,7 +618,7 @@ $(document).ready(function(){
             stop();
             $("#display").html('<h3>Time Remaining: 0 seconds</h3>');
             $('#questions').html('<img src="assets/images/bane.gif" alt="Bane">');
-            $('#result').html('<h4> Time&#39;s Up </h4>');
+            $('#result').html('<h4> Time&#39;s Up: Really? No answer! You guys are the worst villains of them all. </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(quest8, 1000 * 5);
         }
@@ -662,7 +631,7 @@ $(document).ready(function(){
             clearInterval(answer7);
             $("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
             $('#questions').html('<img src="assets/images/bane.gif" alt="Bane">');
-            $('#result').html('<h4> Correct </h4>');
+            $('#result').html('<h4> Correct: It&#39;s OK. He won that battle but I won the war. </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(quest8, 1000 * 5);
         }
@@ -674,7 +643,7 @@ $(document).ready(function(){
             clearInterval(answer7);
             $("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
             $('#questions').html('<img src="assets/images/bane.gif" alt="Bane">');
-            $('#result').html('<h4> Wrong! </h4>');
+            $('#result').html('<h4> Wrong: You guys are driving me batty! </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(quest8, 1000 * 5);
         }
@@ -729,7 +698,7 @@ $(document).ready(function(){
             stop();
             $("#display").html('<h3>Time Remaining: 0 seconds</h3>');
             $('#questions').html('<img src="assets/images/nightwing.gif" alt="Nightwing">');
-            $('#result').html('<h4> Time&#39;s Up </h4>');
+            $('#result').html('<h4> Time&#39;s Up: Lame! </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(quest9, 1000 * 5);
         }
@@ -742,7 +711,7 @@ $(document).ready(function(){
             clearInterval(answer8);
             $("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
             $('#questions').html('<img src="assets/images/nightwing.gif" alt="Nightwing">');
-            $('#result').html('<h4> Correct </h4>');
+            $('#result').html('<h4> Correct: I gotta admit! The name is pretty badass! </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(quest9, 1000 * 5);
         }
@@ -754,7 +723,7 @@ $(document).ready(function(){
             clearInterval(answer8);
             $("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
             $('#questions').html('<img src="assets/images/nightwing.gif" alt="Nightwing">');
-            $('#result').html('<h4> Wrong! </h4>');
+            $('#result').html('<h4> Wrong: Here&#39;s a hint! Check his Linkedin. </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(quest9, 1000 * 5);
         }
@@ -809,7 +778,7 @@ $(document).ready(function(){
             stop();
             $("#display").html('<h3>Time Remaining: 0 seconds</h3>');
             $('#questions').html('<img src="assets/images/batusi.gif" alt="Batusi">');
-            $('#result').html('<h4> Time&#39;s Up </h4>');
+            $('#result').html('<h4> Time&#39;s Up: You ever heard of Google? </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(quest10, 1000 * 5);
         }
@@ -822,7 +791,7 @@ $(document).ready(function(){
             clearInterval(answer9);
             $("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
             $('#questions').html('<img src="assets/images/batusi.gif" alt="Batusi">');
-            $('#result').html('<h4> Correct </h4>');
+            $('#result').html('<h4> Correct: Hey! I know to have fun! </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(quest10, 1000 * 5);
         }
@@ -834,7 +803,7 @@ $(document).ready(function(){
             clearInterval(answer9);
             $("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
             $('#questions').html('<img src="assets/images/batusi.gif" alt="Batusi">');
-            $('#result').html('<h4> Wrong! </h4>');
+            $('#result').html('<h4> Wrong: Boo! You guys are no fun! </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(quest10, 1000 * 5);
         }
@@ -889,7 +858,7 @@ $(document).ready(function(){
             stop();
             $("#display").html('<h3>Time Remaining: 0 seconds</h3>');
             $('#questions').html('<img src="assets/images/martha.gif" alt="Sad Affleck">');
-            $('#result').html('<h4> Time&#39;s Up </h4>');
+            $('#result').html('<h4> Time&#39;s Up: I am already in a bad mood. You are making it worst! </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(quest11, 1000 * 5);
         }
@@ -902,7 +871,7 @@ $(document).ready(function(){
             clearInterval(answer10);
             $("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
             $('#questions').html('<img src="assets/images/martha.gif" alt="Sad Affleck">');
-            $('#result').html('<h4> Correct </h4>');
+            $('#result').html('<h4> Correct: MARTHA!  MARTHA! </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(quest11, 1000 * 5);
         }
@@ -914,7 +883,7 @@ $(document).ready(function(){
             clearInterval(answer10);
             $("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
             $('#questions').html('<img src="assets/images/martha.gif" alt="Sad Affleck">');
-            $('#result').html('<h4> Wrong! </h4>');
+            $('#result').html('<h4> Wrong: I bet you know the name of Superman&#39;s mom. </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(quest11, 1000 * 5);
         }
@@ -969,7 +938,7 @@ $(document).ready(function(){
             stop();
             $("#display").html('<h3>Time Remaining: 0 seconds</h3>');
             $('#questions').html('<img src="assets/images/mrfreeze.gif" alt="Mr Freeze">');
-            $('#result').html('<h4> Time&#39;s Up </h4>');
+            $('#result').html('<h4> Time&#39;s Up: Are you guys frozen? </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(quest12, 1000 * 5);
         }
@@ -982,7 +951,7 @@ $(document).ready(function(){
             clearInterval(answer11);
             $("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
             $('#questions').html('<img src="assets/images/mrfreeze.gif" alt="Mr Freeze">');
-            $('#result').html('<h4> Correct </h4>');
+            $('#result').html('<h4> Correct: Ice Ice Baby! </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(quest12, 1000 * 5);
         }
@@ -994,7 +963,7 @@ $(document).ready(function(){
             clearInterval(answer11);
             $("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
             $('#questions').html('<img src="assets/images/mrfreeze.gif" alt="Mr Freeze">');
-            $('#result').html('<h4> Wrong! </h4>');
+            $('#result').html('<h4> Wrong: Not Cool! </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(quest12, 1000 * 5);
         }
@@ -1049,7 +1018,7 @@ $(document).ready(function(){
         	stop();
         	$("#display").html('<h3>Time Remaining: 0 seconds</h3>');
         	$('#questions').html('<img src="assets/images/joker.gif" alt="Joker">');
-        	$('#result').html('<h4> Time&#39;s Up </h4>');
+        	$('#result').html('<h4> Time&#39;s Up: No Answer? Are you working for the Joker? </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(restart, 1000 * 5);
         }
@@ -1062,7 +1031,7 @@ $(document).ready(function(){
         	clearInterval(answer12);
         	$("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
         	$('#questions').html('<img src="assets/images/joker.gif" alt="Joker">');
-        	$('#result').html('<h4> Correct </h4>');
+        	$('#result').html('<h4> Correct: Playtime is over! </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(restart, 1000 * 5);
         }
@@ -1074,7 +1043,7 @@ $(document).ready(function(){
         	clearInterval(answer12);
         	$("#display").html('<h3>Time Remaining: ' + time + ' seconds</h3>');
         	$('#questions').html('<img src="assets/images/joker.gif" alt="Joker">');
-        	$('#result').html('<h4> Wrong! </h4>');
+        	$('#result').html('<h4> Wrong: The jokes on me! I thought you guys knew your trivia. </h4>');
             $('#choices1,#choices2,#choices3,#choices4').hide();
             setTimeout(restart, 1000 * 5);
         }
